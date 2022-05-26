@@ -6,8 +6,11 @@ const myFunc = async () => {
     for (const file of files) {
         const fileObj = await fsAsync.stat(path.join(__dirname, 'secret-folder', `${file}`));
         const fileSize = fileObj.size;
-        
-        console.log(file.split('.')[0] + ' - ' + file.split('.')[1] + ' - ' + fileSize/1024 + 'kb');
+        if (fileObj.isFile()) {
+            console.log(file.split('.')[0] + ' - ' + file.split('.')[1] + ' - ' + fileSize/1024 + 'kb');
+        } else {
+            console.log(file + ' - this is directory, not a file.')
+        }
     }
 };
 

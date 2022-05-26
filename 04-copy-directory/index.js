@@ -10,4 +10,11 @@ const myFunc = async () => {
     }
 };
 
+const clearDir = async () => {
+    const files = await fs.readdir(path.join(__dirname, 'files-copy'));
+    for (const file of files) {
+        const fileDelete = await fs.unlink(path.join(__dirname, 'files-copy', file));
+    }
+}
+clearDir();
 myFunc();
